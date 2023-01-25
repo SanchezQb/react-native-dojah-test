@@ -1,3 +1,10 @@
-export function multiply(a: number, b: number): Promise<number> {
-  return Promise.resolve(a * b);
-}
+import DojahWidget from './DojahWidget';
+
+// export modules
+export {
+  DojahWidget,
+};
+
+
+export default DojahWidget;
+
