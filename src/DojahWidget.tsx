@@ -116,7 +116,7 @@ const DojahWidget = (props: DojahProps) => {
 
 
     const makeRequest = useCallback(
-        (permissions) => {
+        (permissions: Permission[]) => {
             log('Dojah Requesting:', permissions);
 
             requestMultiple(permissions).then((statuses) => {
