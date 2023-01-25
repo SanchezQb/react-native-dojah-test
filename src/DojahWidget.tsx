@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { WebView } from 'react-native-webview';
 import type { Metadata } from './types/metadata.type';
@@ -13,22 +14,24 @@ import {
 } from 'react-native-permissions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Geolocation from 'react-native-geolocation-service';
-import { ActivityIndicator, Platform, StyleSheet, Text, View } from 'react-native';
-
+import {
+    ActivityIndicator,
+    Platform,
+    StyleSheet,
+    Text,
+    View
+} from 'react-native';
 
 const PLATFORM_CAMERA: Permission =
-    Platform.OS === 'android'
-        ? PERMISSIONS.ANDROID.CAMERA
-        : PERMISSIONS.IOS.CAMERA;
+    Platform.OS === 'android' ? PERMISSIONS.ANDROID.CAMERA : PERMISSIONS.IOS.CAMERA;
 
 
-const PLATFORM_LOCATION =
-    Platform.OS === 'android'
-        ? [
-            PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
-            PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-        ]
-        : PERMISSIONS.IOS.LOCATION_ALWAYS;
+const PLATFORM_LOCATION = Platform.OS === 'android'
+    ? [
+        PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
+        PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+    ]
+    : PERMISSIONS.IOS.LOCATION_ALWAYS;
 
 
 
@@ -69,7 +72,7 @@ const DojahWidget = (props: DojahProps) => {
 
 
     const log = useCallback(
-        (...args) => {
+        (...args: any[]) => {
             config.debug && console.log(...args);
         },
         [config.debug],
@@ -152,7 +155,7 @@ const DojahWidget = (props: DojahProps) => {
 
 
     const requestPermission = useCallback(() => {
-        const permissions = [
+        const permissions: Permission[] = [
             needsCamera && PLATFORM_CAMERA,
             needsLocation && PLATFORM_LOCATION,
         ]
